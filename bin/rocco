@@ -47,10 +47,10 @@ ARGV.options { |o|
   o.parse!
 } or abort_with_note
 
-# Use http://pygments.appspot.com in case `pygmentize(1)` isn't available.
+# Use http://pygments.simplabs.com in case `pygmentize(1)` isn't available.
 unless ENV['PATH'].split(':').any? { |dir| File.exist?("#{dir}/pygmentize") }
   unless options[:webservice]
-    $stderr.puts "pygmentize not in PATH; using pygments.appspot.com instead"
+    $stderr.puts "pygmentize not in PATH; using pygments.simplabs.com instead"
     options[:webservice] = true
   end
 end

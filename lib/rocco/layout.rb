@@ -4,9 +4,10 @@ require 'pathname'
 class Rocco::Layout < Mustache
   self.template_path = "#{File.dirname(__FILE__)}/.."
 
-  def initialize(doc, stylesheet, file=nil)
+  def initialize(doc, stylesheet, syntax_stylesheet, file=nil)
     @doc = doc
     @stylesheet = stylesheet
+    @syntax_stylesheet = syntax_stylesheet
     if not file.nil?
       Rocco::Layout.template_file = file
     end
@@ -18,6 +19,10 @@ class Rocco::Layout < Mustache
 
   def stylesheet
     @stylesheet
+  end
+
+  def syntax_stylesheet
+    @syntax_stylesheet
   end
 
   def file

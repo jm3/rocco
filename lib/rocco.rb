@@ -29,7 +29,8 @@
 # [md]: http://daringfireball.net/projects/markdown/
 # [so]: http://github.com/rtomayko/rocco/blob/master/lib/rocco.rb#commit
 
-#### Prerequisites
+# Prerequisites
+# -------------
 
 # We'll need a Markdown library. Try to load one if not already established.
 unless defined?(Markdown)
@@ -46,7 +47,7 @@ end
 # HTML templating.
 require 'mustache'
 
-# We use `Net::HTTP` to highlight code via <http://pygments.appspot.com>
+# We use `Net::HTTP` to highlight code via <http://pygments.simplabs.com>
 require 'net/http'
 
 # Code is run through [Pygments](http://pygments.org/) for syntax
@@ -55,7 +56,8 @@ unless ENV['PATH'].split(':').any? { |dir| File.executable?("#{dir}/pygmentize")
   warn "WARNING: Pygments not found. Using webservice."
 end
 
-#### Public Interface
+# Public Interface
+# ----------------
 
 # `Rocco.new` takes a source `filename`, an optional list of source filenames
 # for other documentation sources, an `options` hash, and an optional `block`.
@@ -87,30 +89,31 @@ class Rocco
     @data = if block_given? then yield else File.read(filename) end
 
     @options =  {
-      :language      => 'ruby',
-      :comment_chars => '#',
-      :template_file => nil,
-      :stylesheet    => 'http://jashkenas.github.io/docco/resources/linear/docco.css'
+      :comment_chars     => '#',
+      :template_file     => nil,
+      :stylesheet        => 'http://jashkenas.github.io/docco/resources/linear/docco.css',
+      :syntax_stylesheet => 'http://pygments.simplabs.com/default.css'
     }.merge(options)
 
-    # If we detect a language
-    if "text" != detect_language
+    # If the user provided a language
+    if @options[:language]
+      # use it to look around for comment
+      # characters to override the default.
+      @options[:comment_chars] = generate_comment_chars
+    else
+      # Otherwise, try to detect the language and
       # then assign the detected language to `:language`, and look for
       # comment characters based on that language
       @options[:language] = detect_language
       @options[:comment_chars] = generate_comment_chars
-
-    # If we didn't detect a language, but the user provided one, use it
-    # to look around for comment characters to override the default.
-    elsif @options[:language]
-      @options[:comment_chars] = generate_comment_chars
+    end
 
     # If neither is true, then convert the default comment character string
     # into the comment_char syntax (we'll discuss that syntax in detail when
     # we get to `generate_comment_chars()` in a moment.
-    else
-      @options[:comment_chars] = { :single => @options[:comment_chars], :multi => nil }
-    end
+    # else
+    #   @options[:comment_chars] = { :single => @options[:comment_chars], :multi => nil }
+    # end
 
     # Turn `:comment_chars` into a regex matching a series of spaces, the
     # `:comment_chars` string, and the an optional space.  We'll use that
@@ -142,7 +145,11 @@ class Rocco
   # Generate HTML output for the entire document.
   require 'rocco/layout'
   def to_html
-    Rocco::Layout.new(self, @options[:stylesheet], @options[:template_file]).render
+    Rocco::Layout.new(
+      self,
+      @options[:stylesheet],
+      @options[:syntax_stylesheet],
+      @options[:template_file]).render
   end
 
   # Helper Functions
@@ -165,7 +172,7 @@ class Rocco
       if pygmentize?
         %x[pygmentize -N #{@file}].strip.split('+').first
       else
-        "text"
+        @file.split('.').last
       end
   end
 
@@ -382,7 +389,7 @@ class Rocco
     docs_html = process_markdown(markdown).split(/\n*<h5>DIVIDER<\/h5>\n*/m)
 
     # Combine all code blocks into a single big stream with section dividers and
-    # run through either `pygmentize(1)` or <http://pygments.appspot.com>
+    # run through either `pygmentize(1)` or <http://pygments.simplabs.com>
     span, espan = '<span class="c.?">', '</span>'
     if @options[:comment_chars][:single]
       front = @options[:comment_chars][:single]
@@ -461,7 +468,7 @@ class Rocco
   # Pygments is not one of those things that's trivial for a ruby user to install,
   # so we'll fall back on a webservice to highlight the code if it isn't available.
   def highlight_webservice(code)
-    url = URI.parse 'http://pygments.appspot.com/'
+    url = URI.parse 'http://pygments.simplabs.com/'
     options = { 'lang' => @options[:language], 'code' => code}
     Net::HTTP.post_form(url, options).body
   end
