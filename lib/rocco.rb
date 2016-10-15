@@ -95,6 +95,10 @@ class Rocco
       :syntax_stylesheet => 'http://pygments.simplabs.com/default.css'
     }.merge(options)
 
+    if @options[:encoding]
+      @data = @data.force_encoding @options[:encoding]
+    end
+
     # If the user provided a language
     if @options[:language]
       # use it to look around for comment

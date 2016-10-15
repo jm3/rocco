@@ -7,7 +7,7 @@ class RoccoStylesheetTests < Test::Unit::TestCase
     }
     html = r.to_html
     assert(
-      html.include?('<link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">')
+      html.include?('<link rel="stylesheet" href="http://jashkenas.github.io/docco/resources/linear/docco.css">')
     )
   end
 

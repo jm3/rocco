@@ -1,4 +1,3 @@
-# encoding: utf-8
 require File.expand_path('../helper', __FILE__)
 
 class RoccoIssueTests < Test::Unit::TestCase
@@ -30,9 +29,11 @@ class RoccoIssueTests < Test::Unit::TestCase
     # and, just for grins, ensure that iso-8859-1 works too.
     # @TODO:    Is this really the correct behavior?  Converting text
     #           to UTF-8 on the way out is probably preferable.
-    r = Rocco.new( File.dirname(__FILE__) + "/fixtures/issue10.iso-8859-1.rb" )
+    r = Rocco.new( File.dirname(__FILE__) + "/fixtures/issue10.iso-8859-1.rb", [], {
+      encoding: 'iso-8859-1'
+      } )
     assert_equal(
-      "<p>hello w\366rld</p>\n",
+      "<p>hello w\366rld</p>\n".force_encoding('iso-8859-1'),
       r.sections[0][0],
       "ISO-8859-1 input should probably also behave correctly."
     )
