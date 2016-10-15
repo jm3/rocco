@@ -3,13 +3,15 @@
 #/ Generate literate-programming-style documentation for Ruby source <file>s.
 #/
 #/ Options:
-#/   -l, --language=<lang>  The Pygments lexer to use to highlight code
-#/   -c, --comment-chars=<chars>
-#/                          The string to recognize as a comment marker
-#/   -o, --output=<dir>     Directory where generated HTML files are written
-#/   -t, --template=<path>  The file to use as template when rendering HTML
-#/   -d, --docblocks        Parse Docblock @annotations in comments
-#/       --help             Show this help message
+#/   -l,  --language=<lang>          The Pygments lexer to use to highlight code
+#/   -c,  --comment-chars=<chars>    The string to recognize as a comment marker
+#/   -o,  --output=<dir>             Directory where generated HTML files are written
+#/   -t,  --template=<path>          The file to use as template when rendering HTML
+#/   -d,  --docblocks                Parse Docblock @annotations in comments
+#/   -s,  --stylesheet=<path>        Specify a custom general stylesheet
+#/   -ss, --syntax_stylesheet=<path> Specify a custom stylesheet for code syntax
+#/   -e,  --encoding=<encoding>      Read source files using a specific encoding
+#/        --help                     Show this help message
 
 require 'optparse'
 require 'fileutils'
@@ -43,6 +45,8 @@ ARGV.options { |o|
   o.on("-t", "--template=TEMPLATE") { |template| options[:template_file] = template }
   o.on("-d", "--docblocks") { options[:docblocks] = true }
   o.on("-s", "--stylesheet=STYLESHEET") { |stylesheet| options[:stylesheet] = stylesheet }
+  o.on("-ss", "--syntax_stylesheet=SYNTAX_STYLESHEET") { |syntax_stylesheet| options[:syntax_stylesheet] = stylesheet }
+  o.on("-e", "--encoding=ENCODING") { |encoding| options[:encoding] = encoding }
   o.on_tail("-h", "--help") { usage($stdout, 0) }
   o.parse!
 } or abort_with_note
