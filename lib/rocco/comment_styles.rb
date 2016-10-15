@@ -39,6 +39,11 @@ class Rocco
         :multi  => { :start => '"""', :middle => nil, :end => '"""' },
         :heredoc => nil
       },
+      "py"        =>  {
+        :single => "#",
+        :multi  => { :start => '"""', :middle => nil, :end => '"""' },
+        :heredoc => nil
+      },
       "rb"            =>  {
         :single => "#",
         :multi  => { :start => '=begin', :middle => nil, :end => '=end' },

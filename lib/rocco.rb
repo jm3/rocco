@@ -237,8 +237,8 @@ class Rocco
     # PEP 263 encoding information in python sourcefiles, and the similar ruby
     # 1.9 syntax.
     lines.shift if lines[0] =~ /^\#\!/
-    lines.shift if lines[0] =~ /coding[:=]\s*[-\w.]+/ &&
-                   [ "python", "rb" ].include?(@options[:language])
+    lines.shift if lines[0] =~ /(?:en)?coding[:=]\s*[-\w.]+/ &&
+                   [ "python", "py", "rb" ].include?(@options[:language])
 
     # To detect both block comments and single-line comments, we'll set
     # up a tiny state machine, and loop through each line of the file.
