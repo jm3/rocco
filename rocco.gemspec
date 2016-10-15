@@ -57,6 +57,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'redcarpet', '~> 1.17'
   s.add_dependency 'mustache'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'test-unit'
 
   s.has_rdoc = false
   s.homepage = "https://hellojustin.github.com/rocco/"
