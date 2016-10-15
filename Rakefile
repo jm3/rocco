@@ -8,8 +8,8 @@ task :default => [:sup, :docs, :test]
 desc 'Holla'
 task :sup do
   verbose do
-    lines = File.read('README').split("\n")[0,12]
-    lines.map! { |line| line[15..-1] }
+    lines = File.read('README.md').split("\n")[3,7]
+    lines.map! { |line| line[0..-1] }
     puts lines.join("\n")
   end
 end

@@ -91,8 +91,8 @@ class Rocco
     @options =  {
       :comment_chars     => '#',
       :template_file     => nil,
-      :stylesheet        => 'http://jashkenas.github.io/docco/resources/linear/docco.css',
-      :syntax_stylesheet => 'http://pygments.simplabs.com/default.css'
+      :stylesheet        => 'https://jashkenas.github.io/docco/resources/linear/docco.css',
+      :syntax_stylesheet => 'https://pygments.simplabs.com/default.css'
     }.merge(options)
 
     if @options[:encoding]

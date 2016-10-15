@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
 
   s.has_rdoc = false
-  s.homepage = "http://rtomayko.github.com/rocco/"
+  s.homepage = "https://hellojustin.github.com/rocco/"
   s.require_paths = %w[lib]
   s.rubygems_version = '1.1.1'
 end
