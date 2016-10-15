@@ -21,3 +21,33 @@
     documentation generator in CoffeeScript:
 
                     <http://jashkenas.github.com/docco/>
+
+
+Installation
+------------
+
+Rocco is a gem, but this is not the repository associated with the official
+Rubygems distribution of Rocco. The best way to install this gem is via Bundler,
+by pointing at this repository
+
+In your Gemfile:
+```ruby
+gem 'rocco', git: 'git@github.com:hellojustin/rocco.git'
+```
+
+
+Usage
+-----
+
+**Via Rake**
+
+Require `rocco/tasks` in your Rakefile, and create the rocco task.
+
+```ruby
+
+require 'rocco/tasks'
+
+# create the :rocco rake task with params: dest_dir, source_pattern, options
+Rocco::make 'destination_dir/', 'source_dir/**/*.ext', {}
+
+```

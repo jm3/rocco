@@ -53,7 +53,7 @@ require 'net/http'
 # Code is run through [Pygments](http://pygments.org/) for syntax
 # highlighting. If it's not installed, locally, use a webservice.
 unless ENV['PATH'].split(':').any? { |dir| File.executable?("#{dir}/pygmentize") }
-  warn "WARNING: Pygments not found. Using webservice."
+  # warn "WARNING: Pygments not found. Using webservice."
 end
 
 # Public Interface
@@ -445,7 +445,7 @@ class Rocco
 
   # Convert Markdown to classy HTML.
   def process_markdown(text)
-    Markdown.new(text, :smart).to_html
+    Markdown.new(text, :smart, :tables).to_html
   end
 
   # We `popen` a read/write pygmentize process in the parent and

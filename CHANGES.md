@@ -1,6 +1,41 @@
 CHANGES
 =======
 
+0.9 (2016-10-15)
+----------------
+
+This release brought to you by [hellojustin](http://github.com/hellojustin)
+
+### Features
+
+* Adds rake as a development dependency, so if you like keeping your global gem
+  space clean, you can simply `bundle install` and then run:
+  ```sh
+    $ bundle exec rake
+  ```
+
+* Determines language by file extension if Pygments is unavailable and language
+  is not specified by user.
+
+* Adds comment characters for Python files ending in ".py".
+
+* Exposes the `--encoding` option in the rocco shell script.
+
+* Exposes the `:encoding` option in the Rocco constructor.
+
+* Adds installation and usage instructions to README.
+
+### Bugs Fixed
+
+* Fixes syntax-highlighting web service. The web service version of Pygments
+  moved from pygments.appspot.com to pygments.simplabs.com. Rocco now uses the
+  new URL.
+
+* Fixes test failures related to docblock comments.
+
+* Fixes iso-8859-1 encoding bug by allowing user to specify encoding type.
+
+
 0.8 (2011-06-19)
 ----------------
 
