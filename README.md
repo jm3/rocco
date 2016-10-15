@@ -18,6 +18,7 @@ Rocco is a port of, and borrows heavily from, Docco  -- the original
 quick-and-dirty, hundred-line-long, literate-programming-style
 documentation generator in CoffeeScript: <http://jashkenas.github.com/docco/>
 
+[![Build Status](https://travis-ci.org/hellojustin/rocco.svg?branch=master)](https://travis-ci.org/hellojustin/rocco)
 
 Installation
 ------------
