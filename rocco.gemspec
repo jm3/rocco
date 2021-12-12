@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
 
   s.name = 'rocco'
-  s.version = '0.9.0'
-  s.date = '2016-10-15'
+  s.version = '0.9.1'
+  s.date = '2021-12-11'
 
   s.description = "Docco in Ruby"
   s.summary     = s.description
@@ -23,9 +23,16 @@ Gem::Specification.new do |s|
   s.files = %w[
     CHANGES.md
     COPYING
-    README
+    Gemfile
+    LICENSE
+    README.md
     Rakefile
     bin/rocco
+    docs/index.html
+    docs/lib/rocco.html
+    docs/lib/rocco/comment_styles.html
+    docs/lib/rocco/layout.html
+    docs/lib/rocco/tasks.html
     lib/rocco.rb
     lib/rocco/comment_styles.rb
     lib/rocco/layout.mustache
@@ -48,6 +55,7 @@ Gem::Specification.new do |s|
     test/test_reported_issues.rb
     test/test_skippable_lines.rb
     test/test_source_list.rb
+    test/test_stylesheet.rb
   ]
   # = MANIFEST =
 
@@ -59,8 +67,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
   s.add_development_dependency 'test-unit'
 
-  s.has_rdoc = false
   s.homepage = "https://hellojustin.github.com/rocco/"
   s.require_paths = %w[lib]
-  s.rubygems_version = '1.1.1'
 end

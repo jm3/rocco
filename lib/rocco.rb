@@ -77,7 +77,7 @@ end
 #   rendered template.  _Defaults to `http://jashkenas.github.com/docco/resources/docco.css`
 #   (the original docco stylesheet)
 class Rocco
-  VERSION = '0.8.2'
+  VERSION = '0.9.1'
 
   def initialize(filename, sources=[], options={})
     @file       = filename
